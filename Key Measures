@@ -1,0 +1,43 @@
+
+# Average DTI = AVERAGE(financial_loan[dti])
+# Average Intrest Rate = AVERAGE(financial_loan[int_rate])
+# Bad Loan Amount Received = CALCULATE([Total Amount Receieved],financial_loan[Good vs Bad Loan]="Bad Loan")
+# Bad Loan Application % = [Bad Loan Total Application]/[Total_Loan_Application]
+# Bad Loan Funded Amount = CALCULATE([Total Funded Loan Amount],financial_loan[Good vs Bad Loan]="Bad Loan")
+# Bad Loan Total Application = CALCULATE(COUNT(financial_loan[id]),financial_loan[Good vs Bad Loan]="Bad Loan")
+# Good Loan % = [Good Loan Application]/[Total_Loan_Application]
+# Good Loan Application = CALCULATE(COUNT(financial_loan[id]),financial_loan[Good vs Bad Loan]="Good Loan")
+# Good Loan Funded Amount = CALCULATE([Total Funded Loan Amount],financial_loan[Good vs Bad Loan]="Good Loan")
+# Good Loan Total Recevied Amount = CALCULATE([Total Amount Receieved],financial_loan[Good vs Bad Loan]="Good Loan")
+# MOM Amount Received = ([MTD Amount Received]-[PMTD Amount Recevied])/[PMTD Amount Recevied]
+# MOM Average Interst Rate = ([MTD Average interest Rate]-[PMTD AVerage interst Rate])/[PMTD AVerage interst Rate]
+# MOM DTI = ([MTD DTI]-[PMTD DTI])/[PMTD DTI]
+# MOM Loan Amount = ([MTD Loan Funded Amount]-[PMTD Loan Amount])/[PMTD Loan Amount]
+# MOM_Loan_Application = ([MTD Loan Application]-[PMTD loan application])/[PMTD loan application]
+# MTD Amount Received = TOTALMTD([Total Amount Receieved],Date_Table[Date]) 
+# MTD Average interest Rate = TOTALMTD([Average Intrest Rate],Date_Table[Date])
+# MTD DTI = TOTALMTD([Average DTI],Date_Table[Date])
+# MTD Loan Application = TOTALMTD([Total_Loan_Application],Date_Table[Date])
+# MTD Loan Funded Amount = TOTALMTD([Total Funded Loan Amount],Date_Table[Date])
+# PMTD Amount Recevied = CALCULATE([Total Amount Receieved],DATESMTD(DATEADD(Date_Table[Date],-1,MONTH)))
+# PMTD AVerage interst Rate = CALCULATE([Average Intrest Rate],DATESMTD(DATEADD(Date_Table[Date],-1,MONTH)))
+# PMTD AVerage interst Rate = CALCULATE([Average Intrest Rate],DATESMTD(DATEADD(Date_Table[Date],-1,MONTH)))
+# PMTD Loan Amount = CALCULATE([Total Funded Loan Amount],DATESMTD(DATEADD(Date_Table[Date],-1,MONTH)))
+# PMTD loan application = CALCULATE([Total_Loan_Application],DATESMTD(DATEADD(Date_Table[Date],-1,MONTH)))
+# Total Amount Receieved = SUM(financial_loan[total_payment])
+# Total Funded Loan Amount = SUM(financial_loan[loan_amount])
+# Total_Loan_Application = COUNT(financial_loan[id])
+
+
+# Date_Table = ADDCOLUMNS(CALENDAR(date(2021,01,01),DATE(2021,12,31)),
+"Year",YEAR([Date]),
+"Quarter",QUARTER([Date]
+))
+
+
+# Parameter = 
+Select the Measure = {
+    ("Total Amount Receieved", NAMEOF('KPI''S'[Total Amount Receieved]), 0),
+    ("Total Funded Loan Amount", NAMEOF('KPI''S'[Total Funded Loan Amount]), 1),
+    ("Total_Loan_Application", NAMEOF('KPI''S'[Total_Loan_Application]), 2)
+}
